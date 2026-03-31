@@ -104,8 +104,6 @@ Widgets will be added daily. Example categories include:
 ### ✏️ Custom Painting & Graphics
 `CustomPaint` · `ClipPath` · `ShaderMask` · `Transform`
 
-> New widgets will be added every day — ensuring a visible GitHub streak and a growing skill set.
-
 ---
 
 ## Contribution
