@@ -34,14 +34,27 @@ Each widget will have a working example in the repo, so anyone can **run, learn,
 
 ```
 lib/
-├── main.dart                        # Main entry point
-├── screens/                         # Screens to demonstrate widgets
-│   └── home_screen.dart             # Home screen that showcases all widgets
-└── widgets/                         # Folder containing daily widget examples
-    ├── animated_container.dart
-    ├── custom_paint_example.dart
-    ├── gesture_detector_example.dart
-    └── ... (one widget added daily)
+├── main.dart                         # App entry point
+
+├── screens/                          # UI screens (pages)
+│   └── home_page.dart                # Main home screen (widget showcase)
+
+├── daily_widget/                     # Daily Flutter widget implementations
+│   └── app_bar.dart                 # Example: AppBar widget of the day
+│   └── ...                          # One new widget added daily
+
+├── local_widgets/                    # Reusable UI components (small widgets)
+│   ├── app_bar_buttons.dart
+│   ├── custom_tab_bar.dart
+│   ├── tab_content.dart
+│   ├── item_card.dart
+│   └── ...                          # Expandable reusable components
+
+├── data/                             # Static or structured data
+│   └── tab_data.dart
+
+├── models/                           # Data models
+│   └── tab_item.dart
 ```
 
 - **Each widget file** is self-contained with a complete working example.
