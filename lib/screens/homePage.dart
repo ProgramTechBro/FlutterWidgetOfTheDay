@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_of_the_day/daily_widget/app_drawer.dart';
 import 'package:flutter_widget_of_the_day/utils/snackbar.dart';
 import '../daily_widget/app_bar.dart';
 import '../data/tab_data.dart';
-import '../local_widgets/tab_content.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,9 +10,11 @@ class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
 }
+
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   late final TabController _tabController;
+
   @override
   void initState() {
     super.initState();
@@ -21,13 +23,16 @@ class _HomePageState extends State<HomePage>
       vsync: this,
     );
   }
+
   @override
   void dispose() {
     _tabController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
+    final bottomPadding= MediaQuery.of(context).padding.bottom;
     return Scaffold(
       appBar: CustomAppBar.styled(
         title: 'Widget of the Day',
@@ -38,17 +43,14 @@ class _HomePageState extends State<HomePage>
         shadowColor: Colors.deepPurple,
         animateColor: true,
         onSettingsTap: () => SnackbarHelper.show(context, 'Setting Tapped'),
-        onNotificationTap: () => SnackbarHelper.show(context, 'Notification Tapped'),
+        onNotificationTap: () =>
+            SnackbarHelper.show(context, 'Notification Tapped'),
       ),
-      body: TabBarView(
-        controller: _tabController,
-        children: tabDataList
-            .map((data) => TabContent(data: data))
-            .toList(),
-      ),
+      drawer: CustomDrawer()
+      // body: TabBarView(
+      //   controller: _tabController,
+      //   children: tabDataList.map((data) => TabContent(data: data)).toList(),
+      // ),
     );
   }
 }
-
-
-

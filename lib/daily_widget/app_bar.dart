@@ -18,7 +18,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       bottomLeft: Radius.circular(28),
       bottomRight: Radius.circular(28),
     ),
-    this.toolbarHeight = kToolbarHeight,
+    this.toolbarHeight = kToolbarHeight+10,
     this.scrolledUnderElevation = 6.0,
     this.shadowColor = Colors.deepPurpleAccent,
     this.animateColor = true,
@@ -58,13 +58,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       useDefaultSemanticsOrder: useDefaultSemanticsOrder,
       clipBehavior: clipBehavior,
       notificationPredicate: notificationPredicate,
-      ///Leading
-      leading: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Container(
-          child: const Icon(Icons.menu_rounded, color: Colors.white, size: 20),
-        ),
-      ),
       ///Actions
       actions: [
         AppBarButtons(
@@ -80,13 +73,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ],
       ///Tab Bar using Bottom property of AppBar
-      tabBar: CustomTabBar(
-        controller: tabController,
-        tabs: tabs,
-        indicatorColor: Colors.white,
-        labelColor: Colors.white,
-        indicatorWeight: 3,
-      ),
+      // tabBar: CustomTabBar(
+      //   controller: tabController,
+      //   tabs: tabs,
+      //   indicatorColor: Colors.white,
+      //   labelColor: Colors.white,
+      //   indicatorWeight: 3,
+      // ),
     );
   }
   final String title;
@@ -107,10 +100,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Clip clipBehavior;
   final ScrollNotificationPredicate notificationPredicate;
 
+
   @override
   Size get preferredSize => Size.fromHeight(
-    toolbarHeight + (tabBar?.preferredSize.height ?? 0),
-  );
+    toolbarHeight + (tabBar?.preferredSize.height ?? 0));
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +119,19 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           letterSpacing: 0.3,
         ),
       ),
-      leading: leading,
+      leading: leading ??
+          Builder(
+            builder: (innerContext) {
+              return IconButton(
+                onPressed: () => Scaffold.of(innerContext).openDrawer(),
+                icon: const Icon(
+                  Icons.menu_rounded,
+                  color: Colors.white,
+                  size: 20,
+                ),
+              );
+            },
+          ),
       automaticallyImplyLeading: automaticallyImplyLeading,
       actions: [...actions, const SizedBox(width: 8)],
       bottom: tabBar,
@@ -156,4 +163,5 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       actionsPadding: const EdgeInsets.symmetric(horizontal: 4),
     );
   }
+
 }
